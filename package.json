@@ -1,6 +1,6 @@
 {
   "name": "@andreasgalster/fsn-meta-tags",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "fsn-meta-tags is a set of basic shared styles, similar to bootstrap",
   "main": "fsn-meta-tags.html",
   "scripts": {
