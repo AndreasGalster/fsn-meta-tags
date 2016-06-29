@@ -1,63 +1,51 @@
-<dom-module id="fsn-meta-tag">
+<dom-module id='fsn-meta-tag'>
   <template>
   </template>
 </dom-module>
 
 
 <script>
-  require('@polymer/polymer/polymer.html');
 
-  Polymer({
-    is: 'fsn-meta-tag',
-    properties: {
-      defaultTitle: String,
-      title: {
-        type: String,
-        observer: 'setTitle'
-      },
-      meta: {
-        type: Object,
-        observer: 'setMeta'
-      },
-      tag: {
-        type: String,
-        observer: 'setMeta'
-      },
-    },
+require('@polymer/polymer/polymer.html');
 
-    setTitle(title) {
-      document.title = this.title;
+Polymer({
+  is: 'fsn-meta-tag',
+  properties: {
+    defaultTitle: String,
+    title: {
+      type: String,
+      observer: 'setTitle'
     },
-    setMeta() {
-      this._addTag();
+    meta: {
+      type: Object,
+      observer: 'setMeta'
     },
-    _addTag() {
-      // const meta = this._buildTag(this.meta, 'meta');
-      const meta = this._buildTag();
-      document.querySelector('head').insertAdjacentHTML('beforeend', meta);
-    },
-    _buildTag() {
-      let props = "";
-      for (let key in this.meta) {
-        props += `${key}="${this.meta[key]}" `;
-      }
-      props += 'dochead="1"';
-      // var meta = `<${this.tag} ${props}/>`;
-      var meta = `<meta ${props}/>`;
-      return meta;
-    },
+    tag: {
+      type: String,
+      observer: 'setMeta'
+    }
+  },
 
+  setTitle: function() {
+    document.title = this.title;
+  },
+  setMeta: function() {
+    this._addTag();
+  },
+  _addTag: function() {
+    var meta = this._buildTag();
+    document.querySelector('head').insertAdjacentHTML('beforeend', meta);
+  },
+  _buildTag() {
+    let props = "";
+    for (let key in this.meta) {
+      props += `${key}="${this.meta[key]}" `;
+    }
+    props += 'dochead="1"';
+    var meta = `<meta ${props}/>`;
+    return meta;
+  }
+});
 
-
-    // removeDocHeadAddedTags() {
-    //   if (Meteor.isClient) {
-    //     const elements = document.querySelectorAll('[dochead="1"]');
-    //     // We use for-of here to loop only over iterable objects
-    //     for (let element of elements) {
-    //       element.parentNode.removeChild(element);
-    //     }
-    //   }
-    // }
-  });
 
 </script>
